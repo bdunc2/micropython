@@ -160,6 +160,7 @@ STATIC void *thread_entry(void *args_in) {
     thread_entry_args_t *args = (thread_entry_args_t *)args_in;
 
     mp_state_thread_t ts;
+    memset(&ts, 0, sizeof(mp_state_thread_t)); // Need to ensure 0
     mp_thread_set_state(&ts);
 
     mp_stack_set_top(&ts + 1); // need to include ts in root-pointer scan

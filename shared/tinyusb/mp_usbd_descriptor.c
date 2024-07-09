@@ -69,7 +69,7 @@ const uint8_t mp_usbd_desc_cfg_static[USBD_STATIC_DESC_LEN] = {
 const uint16_t *tud_descriptor_string_cb(uint8_t index, uint16_t langid) {
     char serial_buf[MICROPY_HW_USB_DESC_STR_MAX + 1]; // Includes terminating NUL byte
     static uint16_t desc_wstr[MICROPY_HW_USB_DESC_STR_MAX + 1]; // Includes prefix uint16_t
-    const char *desc_str;
+    const char *desc_str = NULL;
     uint16_t desc_len;
 
     switch (index) {

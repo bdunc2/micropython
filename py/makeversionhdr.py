@@ -87,8 +87,8 @@ def make_version_header(repo_path, filename):
     info = None
     if "MICROPY_GIT_TAG" in os.environ:
         info = [os.environ["MICROPY_GIT_TAG"], os.environ["MICROPY_GIT_HASH"]]
-    if info is None:
-        info = get_version_info_from_git(repo_path)
+    # if info is None:
+    #     info = get_version_info_from_git(repo_path)
     if info is None:
         info = get_version_info_from_mpconfig(repo_path)
 
