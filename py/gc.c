@@ -773,6 +773,9 @@ void gc_free(void *ptr) {
     #endif
 
     size_t block = BLOCK_FROM_PTR(area, ptr);
+    assert(ATB_GET_KIND(area, block) != AT_FREE); // For debugging
+    assert(ATB_GET_KIND(area, block) != AT_TAIL);
+    assert(ATB_GET_KIND(area, block) != AT_MARK);
     assert(ATB_GET_KIND(area, block) == AT_HEAD);
 
     #if MICROPY_ENABLE_FINALISER
