@@ -183,6 +183,20 @@ void vstr_add_strn(vstr_t *vstr, const char *str, size_t len) {
     vstr->len += len;
 }
 
+void vstr_add_strn_no_exc(vstr_t *vstr, const char *str, size_t len) {
+    // Instead of vstr_ensure_extra, just copy till the end of the vstr buffer and return
+    // No errors!!
+    if (vstr->len == vstr->alloc)
+        return; // Immediate return
+ 
+    if (vstr->len + len > vstr->alloc)
+        // Update len to allow fill only upto alloc
+        len = vstr->alloc - vstr->len;        
+
+    memmove(vstr->buf + vstr->len, str, len);
+    vstr->len += len;
+}
+
 STATIC char *vstr_ins_blank_bytes(vstr_t *vstr, size_t byte_pos, size_t byte_len) {
     size_t l = vstr->len;
     if (byte_pos > l) {
